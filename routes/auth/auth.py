@@ -128,7 +128,7 @@ def login_user():
         if(result):
             try:
                 resp["token"] = jwt.encode(
-                    {"user_id": resp["_id"]},
+                    {"user_id": resp["_id"], "email": resp["email"]},
                     current_app.config["SECRET_KEY"],
                     algorithm="HS256"
                 )

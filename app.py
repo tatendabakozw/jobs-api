@@ -1,8 +1,8 @@
 import os
 from flask import Flask, jsonify, json
 from dotenv import load_dotenv
-from flask_pymongo import PyMongo
 from routes.auth.auth import app_file1
+from routes.user.user import user_route
 from werkzeug.exceptions import HTTPException
 from config.database import mongo
 
@@ -31,6 +31,7 @@ if __name__ == "__main__":
 
 #user defined routes
 app.register_blueprint(app_file1)
+app.register_blueprint(user_route)
     
 # default app route
 @app.route('/', methods=['GET'])
