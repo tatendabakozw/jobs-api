@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify, Response
 import bcrypt
 from bson import json_util
-import sys
-sys.path.append("..") 
-from ...config.database import mongo
+# import sys
+# sys.path.append("..") 
+from config.database import mongo
 import json
 import jwt
 from flask import current_app
