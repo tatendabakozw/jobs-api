@@ -84,7 +84,6 @@ def register_user():
     }
 
     id = mongo.db.user.insert(new_user)
-    # id = mongo.db.
 
     if(id):
         resp = {
