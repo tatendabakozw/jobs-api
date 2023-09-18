@@ -2,7 +2,7 @@ from functools import wraps
 import jwt
 from flask import request, abort
 from flask import current_app
-from config.database import mongo
+from ..config.database import mongo
 import json
 from bson import json_util
 
