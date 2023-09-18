@@ -37,24 +37,33 @@ def get_single_user(user_id):
 @user_route.route("/api/user/edit/<user_id>", methods=["PATCH"])
 @token_required
 def edit_single_user(current_user, user_id):
-    mongo.db.user.update_one({"_id": ObjectId(user_id)},
+    try:
+        mongo.db.user.update_one({"_id": ObjectId(user_id)},
                   { "$set": {
                              "name": request.json .get('name'),
                               "photoURL": request.json .get('photoURL'),
                              }
                  })
-    return {
-        "message": "Account edited"
-    }
+        return {
+            "message": "Account edited"
+        }
+    except Exception as e:
+        return {
+                    "error": "Something went wrong",
+                    "message": str(e)
+                }, 500
     # return jsonify(current_user)
 
 # delete single user
 # delete request
 # /api/user/delete
-# @user_route.route("/api/user/delete", methods=["DELETE"])
-# @token_required
-# def edit_single_user(current_user):
-#     return jsonify(current_user)
+@user_route.route("/api/user/delete/<user_id>", methods=["DELETE"])
+@token_required
+def delete_single_user(current_user, user_id):
+    mongo.db.user.delete_one({"_id": ObjectId(user_id)})
+    return {
+            "message": "User deleted successfully"
+        }
 
 # get all users and search
 # post request
