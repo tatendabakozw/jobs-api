@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify, Response
 from bson.objectid import ObjectId
 from bson import json_util
-from ...config.database import mongo
+from config.database import mongo
 import json
 from flask import current_app
-from ...middleware.auth_middleware import token_required
+from middleware.auth_middleware import token_required
 
 user_route = Blueprint('user_route',__name__)
 

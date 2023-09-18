@@ -5,16 +5,19 @@ from routes.auth.auth import app_file1
 from routes.user.user import user_route
 from werkzeug.exceptions import HTTPException
 from config.database import mongo
+from flask_cors import CORS, cross_origin
 
 # load virtual environment variables
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 app.secret_key = "secretkey"
 
 # load mongo uri from env file
 mongo_db_url = os.environ.get("MONGO_DB_CONN_STRING")
 app.config['MONGO_URI'] = mongo_db_url
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # jwt keys
 
